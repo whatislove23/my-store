@@ -8,7 +8,7 @@ export default function PageNotFound() {
           <div className="text-9xl ">404</div>
           Ooops seems the page not found...
           <button className="m-5 p-2 bg-yellow-300 rounded-md hover:-translate-y-1 transition-all duration-300">
-            <Link to="/my-store/">Return to the home page</Link>
+            <Link to="/">Return to the home page</Link>
           </button>
         </div>
       </div>
