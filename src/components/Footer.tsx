@@ -8,7 +8,7 @@ export default function Footer({}: {}) {
           <p className="uppercase mb-2 text-center">Useful links</p>
           <ul className="text-center text-sm  font-thin flex flex-col gap-3">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/my-store">Home</Link>
             </li>
             <li>
               <Link to="/store">Store</Link>
