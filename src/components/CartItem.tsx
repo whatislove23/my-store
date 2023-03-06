@@ -6,10 +6,10 @@ export default function CartItem(all: Product) {
   const { id, title, image, price, cartCount }: Product = all;
   const { removeFromCart, addToCart, decreaseCart } = useContext(MyCartContext);
   return (
-    <div className="bg-white w-100 rounded shadow flex p-2 flex mt-2">
+    <div className="bg-white w-100 rounded shadow flex p-2 flex mt-2 items-center justify-center">
       <button
         onClick={() => removeFromCart(id)}
-        className="bg-red-500  rounded-full text-white text-sm p-1 text-xl "
+        className="bg-red-500  rounded-full text-white text-sm p-1 text-xl h-full"
       >
         &#215;
       </button>

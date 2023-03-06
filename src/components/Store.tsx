@@ -60,7 +60,7 @@ export default function Store(props: {}) {
         <input
           type="text"
           placeholder="Find..."
-          className="text-sm p-2 border rounded w-full   sm:w-72 sm:mx-2"
+          className="text-sm p-2 border rounded w-full   sm:w-72 sm:mx-2 c"
           onInput={findItems}
         />
       </div>
