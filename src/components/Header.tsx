@@ -23,12 +23,12 @@ export default function Header(props: {}) {
           </svg>
         </Link>
         <div className="gap-2 flex ">
-          <NavLink to="/" className={getLinkStyle}>
+          <Link to="/" className={` ${getLinkStyle}`}>
             Home
-          </NavLink>
-          <NavLink to="/store" className={getLinkStyle}>
+          </Link>
+          <Link to="/store" className={` ${getLinkStyle}`}>
             Store
-          </NavLink>
+          </Link>
           <button onClick={() => setOpen(true)}>
             {items.length > 0 ? (
               <svg
