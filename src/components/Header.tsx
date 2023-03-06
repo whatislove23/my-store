@@ -9,7 +9,7 @@ export default function Header(props: {}) {
   return (
     <header className="shadow-sm h-14 bg-white fixed z-10 w-full inset-0">
       <div className=" flex items-center justify-between  container max-w-7xl h-full mx-auto px-2 text-gray-800 ">
-        <Link to="/my-store" className="">
+        <Link to="/" className="">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -23,7 +23,7 @@ export default function Header(props: {}) {
           </svg>
         </Link>
         <div className="gap-2 flex ">
-          <NavLink to="/my-store" className={getLinkStyle}>
+          <NavLink to="/" className={getLinkStyle}>
             Home
           </NavLink>
           <NavLink to="/store" className={getLinkStyle}>

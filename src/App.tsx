@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App  ">
       <CartContext>
-        <BrowserRouter>
+        <BrowserRouter basename="/my-store">
           <Cart />
           <div className="flex flex-col justify-between h-screen">
             <Header />
