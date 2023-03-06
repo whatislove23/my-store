@@ -15,12 +15,12 @@ function App() {
   return (
     <div className="App  ">
       <CartContext>
-        <BrowserRouter basename="/my-store">
+        <BrowserRouter basename="/">
           <Cart />
           <div className="flex flex-col justify-between h-screen">
             <Header />
             <Routes>
-              <Route path="/my-store" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/store" element={<Store />} />
               <Route path="/order" element={<OrderPage />} />
               <Route path="*" element={<PageNotFound />} />
