@@ -20,7 +20,7 @@ function App() {
           <div className="flex flex-col justify-between h-screen">
             <Header />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/my-store" element={<Home />} />
               <Route path="/store" element={<Store />} />
               <Route path="/order" element={<OrderPage />} />
               <Route path="*" element={<PageNotFound />} />
