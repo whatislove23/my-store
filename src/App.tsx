@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Cart from "./components/Cart";
-import Header from "./components/Header";
-import Home from "./components/Home";
-import PageNotFound from "./components/PageNotFound";
-import Store from "./components/Store";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Footer from "./components/Footer";
-import OrderPage from "./components/OrderPage";
-import { Provider } from "react-redux";
 import store from "./context/store";
+import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import Store from "./components/Store";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import OrderPage from "./components/OrderPage";
+import PageNotFound from "./components/PageNotFound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="App  ">
