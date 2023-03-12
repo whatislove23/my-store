@@ -1,11 +1,18 @@
-import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { MyCartContext } from "../context/CartContext";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { Product } from "./Store";
 
 export default function Header(props: {}) {
   const getLinkStyle = ({ isActive }: { isActive: boolean }): string =>
     isActive ? "" : "text-gray-600";
-  const { setOpen, items } = useContext(MyCartContext);
+  const dispatch = useDispatch();
+  const { items } = useSelector(
+    (state: { CartReduser: { items: Product[] } }) => state.CartReduser
+  );
+  const open = () => {
+    dispatch({ type: "OPEN" });
+  };
   return (
     <header className="shadow-sm h-14 bg-white fixed z-10 w-full inset-0">
       <div className=" flex items-center justify-between  container max-w-7xl h-full mx-auto px-2 text-gray-800 ">
@@ -29,7 +36,7 @@ export default function Header(props: {}) {
           <Link to="/store" className={` ${getLinkStyle}`}>
             Store
           </Link>
-          <button onClick={() => setOpen(true)}>
+          <button onClick={open}>
             {items.length > 0 ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"

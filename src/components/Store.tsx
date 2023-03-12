@@ -24,18 +24,17 @@ export default function Store(props: {}) {
   useEffect(() => {
     setIsLoading(true);
     try {
-      fetch("https://fakestoreapi.com/products")
+      fetch("https://fakestoreapi.com/products/")
         .then((res) => res.json())
         .then((json) => {
           setData(json);
+          console.log(json);
           setfilteredData(json);
+          setIsLoading(false);
         });
     } catch (error: any) {
+      setIsLoading(true);
       setError(error);
-    } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
     }
   }, []);
 
@@ -50,7 +49,6 @@ export default function Store(props: {}) {
     if (filtered !== undefined && filtered.length <= 0) {
       setfilteredData(data);
     }
-    console.log(filtered);
     setfilteredData(filtered);
   };
 
@@ -64,8 +62,8 @@ export default function Store(props: {}) {
           onInput={findItems}
         />
       </div>
-      <div className="container mx-auto my-5 flex flex-wrap justify-center gap-5 max-w-7xl">
-        {isLoading || error
+      <div className="container mx-auto my-5 flex flex-wrap justify-center gap-5 max-w-7xl items-start">
+        {isLoading || error || data?.length === 0
           ? [1, 2, 3, 4, 5, 6, 7, 8].map((item) => <FakePost key={item} />)
           : filteredData?.map((item) => <Item key={item.id} {...item} />)}
       </div>

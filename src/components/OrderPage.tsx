@@ -1,10 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import { MyCartContext } from "../context/CartContext";
+import { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import Select from "react-select";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Product } from "./Store";
 export default function OrderPage({}: {}) {
-  const { items, getTotalPrice } = useContext(MyCartContext);
+  const { items, total } = useSelector(
+    (state: { CartReduser: { items: Product[]; total: number } }) =>
+      state.CartReduser
+  );
   function generateID(): string {
     const timestamp = new Date().getTime();
     const randomNumber = Math.floor(Math.random() * 10000);
@@ -80,7 +84,7 @@ export default function OrderPage({}: {}) {
       </div>
       <div className="container mt-4 flex justify-around  text-lg text-gray-700 flex-wrap-reverse">
         <div className="self-star mt-2 ">
-          Total price {getTotalPrice()} $
+          Total price {total} $
           <div className="flex flex-col gap-2">
             <Select
               onChange={(payment) => setPayment(payment?.value)}

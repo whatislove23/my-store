@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  font-family: "Golos Text", sans-serif;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.height {
+  height: 420px;
+  animation: zoom 0.5s normal ease-in-out;
+}
+@keyframes zoom {
+  0% {
+    opacity: (0.2);
+    transform: scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

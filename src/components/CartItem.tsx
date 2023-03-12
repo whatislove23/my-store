@@ -1,14 +1,24 @@
-import { useContext } from "react";
-import { MyCartContext } from "../context/CartContext";
+import { useDispatch } from "react-redux";
 import { Product } from "./Store";
-
 export default function CartItem(all: Product) {
   const { id, title, image, price, cartCount }: Product = all;
-  const { removeFromCart, addToCart, decreaseCart } = useContext(MyCartContext);
+  const dispatch = useDispatch();
+  const addToCart = () => {
+    dispatch({ type: "ADD", item: { id } });
+    dispatch({ type: "GET_TOTAL_PRICE" });
+  };
+  const removeFromCart = () => {
+    dispatch({ type: "REMOVE", id });
+    dispatch({ type: "GET_TOTAL_PRICE" });
+  };
+  const decreaseCart = () => {
+    dispatch({ type: "DECREASE", id });
+    dispatch({ type: "GET_TOTAL_PRICE" });
+  };
   return (
     <div className="bg-white w-100 rounded shadow flex p-2 flex mt-2 items-center justify-center">
       <button
-        onClick={() => removeFromCart(id)}
+        onClick={() => removeFromCart()}
         className="bg-red-500  rounded-full text-white text-sm p-1 text-xl h-full"
       >
         &#215;
@@ -24,14 +34,14 @@ export default function CartItem(all: Product) {
         <div className="text-sm text-gray-800">{title} </div>
         <div className="flex gap-2 items-center text-sm w-100 justify-between">
           <button
-            onClick={() => decreaseCart(id)}
+            onClick={() => decreaseCart()}
             className="text-gray-700 p-1 rounded border transition duration-200 hover:bg-blue-600 hover:text-white hover:duration-300"
           >
             -
           </button>
           {price}$ &#215; {cartCount}
           <button
-            onClick={() => addToCart({ ...all })}
+            onClick={() => addToCart()}
             className="text-gray-700 p-1 rounded border transition duration-200 hover:bg-blue-600 hover:text-white hover:duration-300"
           >
             +

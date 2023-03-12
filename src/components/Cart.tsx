@@ -1,10 +1,17 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { MyCartContext } from "../context/CartContext";
 import CartItem from "./CartItem";
-
+import { useSelector, useDispatch } from "react-redux";
+import { Product } from "./Store";
 export default function Cart(props: {}) {
-  const { isOpen, setOpen, items, getTotalPrice } = useContext(MyCartContext);
+  const dispatch = useDispatch();
+  const { items, total, isOpen } = useSelector(
+    (state: {
+      CartReduser: { items: Product[]; total: number; isOpen: boolean };
+    }) => state.CartReduser
+  );
+  const close = () => {
+    dispatch({ type: "CLOSE" });
+  };
   if (isOpen) {
     document.body.style.overflow = "hidden";
   } else {
@@ -15,7 +22,7 @@ export default function Cart(props: {}) {
       {isOpen ? (
         <div
           onClick={() => {
-            setOpen(false);
+            close();
           }}
           className="backdrop-blur h-screen bg-gray-800 w-screen top-0 right-0 fixed z-30 flex justify-end bg-opacity-60 hover:cursor-pointer"
         >
@@ -25,7 +32,7 @@ export default function Cart(props: {}) {
           >
             <div className=" flex align-center justify-between">
               <div>Your cart</div>
-              <button onClick={() => setOpen(false)} className="text-3xl">
+              <button onClick={close} className="text-3xl">
                 &#215;
               </button>{" "}
             </div>
@@ -34,12 +41,12 @@ export default function Cart(props: {}) {
                 <CartItem key={item.id} {...item} />
               ))}
             </div>
-            <div className="mt-2 text-lg">Total price: {getTotalPrice()} $</div>
+            <div className="mt-2 text-lg">Total price: {total} $</div>
             {items.length > 0 && (
               <Link
                 to="/order"
                 className="mb-20 mt-2 bg-green-600 text-white p-2 rounded shadow-lg text-center"
-                onClick={() => setOpen(false)}
+                onClick={close}
               >
                 Make an order
               </Link>
