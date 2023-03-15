@@ -66,10 +66,10 @@ type cartAction =
 function CartReduser(state = initialState, action: cartAction) {
   switch (action.type) {
     case CartActionTypes.ADD:
-      let item = state.items.find((item) => (item.id = action.item.id));
+      let item = state.items.find((item) => item.id === action.item.id);
       if (item !== undefined) {
         let res = state.items.map((cartItem) => {
-          if (cartItem.id === action.item.id) {
+          if (cartItem.id === item!.id) {
             const cartCount =
               cartItem.cartCount !== undefined ? cartItem.cartCount + 1 : 1;
             return { ...cartItem, cartCount };
@@ -79,14 +79,10 @@ function CartReduser(state = initialState, action: cartAction) {
         localStorage.setItem("cart", JSON.stringify(res));
         return { ...state, items: res };
       }
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([...state.items, { ...action.item, cartCount: 1 }])
-      );
-      return {
-        ...state,
-        items: [...state.items, { ...action.item, cartCount: 1 }],
-      };
+      const updatedItems = [...state.items, { ...action.item, cartCount: 1 }];
+      localStorage.setItem("cart", JSON.stringify(updatedItems));
+      return { ...state, items: updatedItems };
+
     case CartActionTypes.REMOVE:
       let items = state.items.filter((item) => item.id !== action.id);
       localStorage.setItem("cart", JSON.stringify(items));
