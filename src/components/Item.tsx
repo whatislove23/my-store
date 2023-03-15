@@ -93,7 +93,9 @@ export default function Item({
           leaveTo="opacity-0 scale-95"
         >
           <div className="border-t border-gray-300 p-2 mt-2 ">
-            <p className="text-gray-700 text-justify">{description}</p>
+            <p className="text-gray-700 text-justify overflow-hidden">
+              {description}
+            </p>
           </div>
         </Transition>
       </div>

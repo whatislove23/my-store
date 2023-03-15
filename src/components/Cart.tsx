@@ -19,7 +19,9 @@ export default function Cart(props: {}) {
   } else {
     document.body.style.overflow = "scroll";
   }
-
+  useEffect(() => {
+    dispatch({ type: "GET_TOTAL_PRICE" });
+  }, []);
   return (
     <>
       {isOpen ? (

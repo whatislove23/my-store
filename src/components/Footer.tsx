@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 export default function Footer({}: {}) {
+  const [email, setEmail] = useState<string>("");
+
   return (
     <footer className="bg-gray-600  mt-10 text-white py-4   ">
       <div className=" container mx-auto flex  justify-between  gap-2 p-4">
@@ -25,11 +28,16 @@ export default function Footer({}: {}) {
             className="flex flex-col text-sm  "
           >
             <input
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               type="email"
               className="text-gray-700 rounded w-54 sm:w-80  p-1 text-center "
               placeholder="Your email addres"
             />
-            <button className="rounded border p-2 mt-4 hover:bg-gray-100 hover:text-gray-800 transition duration-300 hover:duration-500 ">
+            <button
+              disabled={email.length > 10 ? false : true}
+              className="rounded border p-2 mt-4 hover:bg-gray-100 hover:text-gray-800 transition duration-300 hover:duration-500  disabled:hover:bg-transparent disabled:hover:text-white"
+            >
               Subscribe
             </button>
           </form>
