@@ -28,7 +28,6 @@ export default function Store(props: {}) {
         .then((res) => res.json())
         .then((json) => {
           setData(json);
-          console.log(json);
           setfilteredData(json);
           setIsLoading(false);
         });

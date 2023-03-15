@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import { useSelector, useDispatch } from "react-redux";
 import { Product } from "./Store";
+import { useEffect } from "react";
+
 export default function Cart(props: {}) {
   const dispatch = useDispatch();
   const { items, total, isOpen } = useSelector(
@@ -17,6 +19,7 @@ export default function Cart(props: {}) {
   } else {
     document.body.style.overflow = "scroll";
   }
+
   return (
     <>
       {isOpen ? (
@@ -41,7 +44,11 @@ export default function Cart(props: {}) {
                 <CartItem key={item.id} {...item} />
               ))}
             </div>
-            <div className="mt-2 text-lg">Total price: {total} $</div>
+            <div className="mt-2 text-lg">
+              {items.length > 0
+                ? `Total price: ${total} $`
+                : "Your cart is empty"}
+            </div>
             {items.length > 0 && (
               <Link
                 to="/order"

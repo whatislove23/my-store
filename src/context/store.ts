@@ -18,8 +18,9 @@ interface CartState {
   total: number;
   isOpen: boolean;
 }
+const storedCart = localStorage.getItem("cart");
 const initialState: CartState = {
-  items: [],
+  items: storedCart ? JSON.parse(storedCart) : [],
   total: 0,
   isOpen: false,
 };
@@ -75,14 +76,20 @@ function CartReduser(state = initialState, action: cartAction) {
           }
           return cartItem;
         });
+        localStorage.setItem("cart", JSON.stringify(res));
         return { ...state, items: res };
       }
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([...state.items, { ...action.item, cartCount: 1 }])
+      );
       return {
         ...state,
         items: [...state.items, { ...action.item, cartCount: 1 }],
       };
     case CartActionTypes.REMOVE:
       let items = state.items.filter((item) => item.id !== action.id);
+      localStorage.setItem("cart", JSON.stringify(items));
       return { ...state, items };
     case CartActionTypes.DECREASE:
       let cartItem = state.items.find((item) => item.id === action.id);
@@ -100,6 +107,7 @@ function CartReduser(state = initialState, action: cartAction) {
           }
           return item;
         });
+        localStorage.setItem("cart", JSON.stringify(newItems));
         return { ...state, items: newItems };
       }
       return state;
@@ -114,7 +122,6 @@ function CartReduser(state = initialState, action: cartAction) {
     case CartActionTypes.CLOSE:
       return { ...state, isOpen: false };
     case CartActionTypes.OPEN:
-      console.log("OPEN");
       return { ...state, isOpen: true };
     default:
       return state;
