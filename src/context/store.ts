@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 import { combineReducers } from "redux";
+
 type Product = {
   description: string;
   id: number;
@@ -46,7 +47,6 @@ interface decreaseAction {
   type: typeof CartActionTypes.DECREASE;
   id: number;
 }
-
 interface removeAction {
   type: typeof CartActionTypes.REMOVE;
   id: number;
@@ -54,7 +54,6 @@ interface removeAction {
 interface getTotalPriceAction {
   type: typeof CartActionTypes.GET_TOTAL_PRICE;
 }
-
 type cartAction =
   | addAction
   | removeAction
@@ -82,7 +81,6 @@ function CartReduser(state = initialState, action: cartAction) {
       const updatedItems = [...state.items, { ...action.item, cartCount: 1 }];
       localStorage.setItem("cart", JSON.stringify(updatedItems));
       return { ...state, items: updatedItems };
-
     case CartActionTypes.REMOVE:
       let items = state.items.filter((item) => item.id !== action.id);
       localStorage.setItem("cart", JSON.stringify(items));
@@ -123,6 +121,24 @@ function CartReduser(state = initialState, action: cartAction) {
       return state;
   }
 }
+export const open = () => {
+  store.dispatch({ type: CartActionTypes.OPEN });
+};
+export const close = () => {
+  store.dispatch({ type: CartActionTypes.CLOSE });
+};
+export const remove = ({ id }: { id: number }) => {
+  store.dispatch({ type: CartActionTypes.REMOVE, id });
+};
+export const add = (item: Product) => {
+  store.dispatch({ type: CartActionTypes.ADD, item });
+};
+export const decrease = (id: number) => {
+  store.dispatch({ type: CartActionTypes.DECREASE, id });
+};
+export const getTotalPrice = () => {
+  store.dispatch({ type: CartActionTypes.GET_TOTAL_PRICE });
+};
 
 const rootReducer = combineReducers({
   CartReduser,

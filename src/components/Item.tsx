@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import { Product } from "./Store";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { add, getTotalPrice } from "../context/store";
 export default function Item({
   id,
   image,
@@ -13,14 +13,6 @@ export default function Item({
 }: Product) {
   const [isOpen, setOpen] = useState<boolean>(false);
   const onBtnClic = (): void => setOpen((prev) => !prev);
-  const dispatch = useDispatch();
-  const addToCart = () => {
-    dispatch({
-      type: "ADD",
-      item: { id, image, description, title, rating, price },
-    });
-    dispatch({ type: "GET_TOTAL_PRICE" });
-  };
   return (
     <div
       className=" container mx-2 sm:w-full md:w-72  bg-white shadow-md rounded p-2 pb-4 flex
@@ -65,7 +57,15 @@ export default function Item({
           <button
             className="flex items-center px-2"
             onClick={() => {
-              addToCart();
+              add({
+                id,
+                image,
+                description,
+                title,
+                rating,
+                price,
+              });
+              getTotalPrice();
               toast.success("Added to cart!");
             }}
           >

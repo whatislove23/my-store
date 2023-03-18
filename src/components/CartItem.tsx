@@ -1,19 +1,18 @@
-import { useDispatch } from "react-redux";
+import { add, decrease, getTotalPrice, remove } from "../context/store";
 import { Product } from "./Store";
 export default function CartItem(all: Product) {
   const { id, title, image, price, cartCount }: Product = all;
-  const dispatch = useDispatch();
   const addToCart = () => {
-    dispatch({ type: "ADD", item: { id } });
-    dispatch({ type: "GET_TOTAL_PRICE" });
+    add(all);
+    getTotalPrice();
   };
   const removeFromCart = () => {
-    dispatch({ type: "REMOVE", id });
-    dispatch({ type: "GET_TOTAL_PRICE" });
+    remove({ id });
+    getTotalPrice();
   };
   const decreaseCart = () => {
-    dispatch({ type: "DECREASE", id });
-    dispatch({ type: "GET_TOTAL_PRICE" });
+    decrease(id);
+    getTotalPrice();
   };
   return (
     <div className="bg-white w-100 rounded shadow flex p-2 flex mt-2 items-center justify-center">

@@ -1,26 +1,24 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Product } from "./Store";
 import { useEffect } from "react";
+import { close, getTotalPrice } from "../context/store";
 
 export default function Cart(props: {}) {
-  const dispatch = useDispatch();
   const { items, total, isOpen } = useSelector(
     (state: {
       CartReduser: { items: Product[]; total: number; isOpen: boolean };
     }) => state.CartReduser
   );
-  const close = () => {
-    dispatch({ type: "CLOSE" });
-  };
+
   if (isOpen) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "scroll";
   }
   useEffect(() => {
-    dispatch({ type: "GET_TOTAL_PRICE" });
+    getTotalPrice();
   }, []);
   return (
     <>
