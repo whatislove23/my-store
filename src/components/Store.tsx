@@ -53,11 +53,11 @@ export default function Store(props: {}) {
 
   return (
     <div className="mt-20">
-      <div className="container mx-auto ">
+      <div className="container mx-auto flex flex-wrap  justify-center lg:justify-start  max-w-7xl items-start ">
         <input
           type="text"
           placeholder="Find..."
-          className="text-sm p-2 border rounded w-full   sm:w-72 sm:mx-2 c"
+          className="text-sm p-2 border rounded w-full mx-2 lg:w-72"
           onInput={findItems}
         />
       </div>

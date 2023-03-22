@@ -4,7 +4,7 @@ export default function Home(props: {}) {
   return (
     <div className="mt-20 ">
       <div className="container mx-auto flex flex-col justify-between items-center gap-20  ">
-        <h1 className="text-3xl sm:text-4xl uppercase font-bold text-gray-600">
+        <h1 className="text-3xl sm:text-4xl uppercase font-bold text-gray-600 text-center">
           Welcome to our store
         </h1>
         <img

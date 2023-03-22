@@ -32,7 +32,7 @@ export default function Header({}: {}) {
           <Link to="/store" className={` ${getLinkStyle}`}>
             Store
           </Link>
-          <button onClick={open}>
+          <button onClick={open} className="mr-5">
             {items.length > 0 ? (
               <div className="relative">
                 <svg
