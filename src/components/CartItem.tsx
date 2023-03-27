@@ -1,18 +1,21 @@
-import { add, decrease, getTotalPrice, remove } from "../context/store";
 import { Product } from "./Store";
+import { add, remove, decrease, getTotalPrice } from "../context/cartSlice";
+import { useAppDispatch } from "../context/hook";
+
 export default function CartItem(all: Product) {
   const { id, title, image, price, cartCount }: Product = all;
+  const dispatch = useAppDispatch();
   const addToCart = () => {
-    add(all);
-    getTotalPrice();
+    dispatch(add(all));
+    dispatch(getTotalPrice(1));
   };
   const removeFromCart = () => {
-    remove({ id });
-    getTotalPrice();
+    dispatch(remove(id));
+    dispatch(getTotalPrice(1));
   };
   const decreaseCart = () => {
-    decrease(id);
-    getTotalPrice();
+    dispatch(decrease(id));
+    dispatch(getTotalPrice(1));
   };
   return (
     <div className="bg-white w-100 rounded shadow flex p-2 flex mt-2 items-center justify-center">

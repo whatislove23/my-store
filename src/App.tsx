@@ -1,5 +1,4 @@
 import "./App.css";
-import store from "./context/store";
 import Cart from "./components/Cart";
 import { Provider } from "react-redux";
 import Store from "./components/Store";
@@ -11,10 +10,11 @@ import { ToastContainer } from "react-toastify";
 import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import newStore from "./context/newStore";
 function App() {
   return (
     <div className="App  ">
-      <Provider store={store}>
+      <Provider store={newStore}>
         <BrowserRouter basename="/my-store">
           <Cart />
           <div className="flex flex-col justify-between h-screen">

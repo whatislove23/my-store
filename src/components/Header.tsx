@@ -1,14 +1,11 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { open } from "../context/store";
-import { Product } from "./Store";
-
+import { open } from "../context/cartSlice";
+import { useAppDispatch, useAppSelector } from "../context/hook";
 export default function Header({}: {}) {
   const getLinkStyle = ({ isActive }: { isActive: boolean }): string =>
     isActive ? "" : "text-gray-600";
-  const { items } = useSelector(
-    (state: { CartReduser: { items: Product[] } }) => state.CartReduser
-  );
+  const { items } = useAppSelector((state) => state.cartSlice);
+  const dispatch = useAppDispatch();
   return (
     <header className="shadow-sm h-14 bg-white fixed z-10 w-full inset-0">
       <div className=" flex items-center justify-between  container max-w-7xl h-full mx-auto px-2 text-gray-800 ">
@@ -32,7 +29,7 @@ export default function Header({}: {}) {
           <Link to="/store" className={` ${getLinkStyle}`}>
             Store
           </Link>
-          <button onClick={open} className="mr-5">
+          <button onClick={() => dispatch(open(1))} className="mr-5">
             {items.length > 0 ? (
               <div className="relative">
                 <svg

@@ -1,14 +1,10 @@
-import { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import Select from "react-select";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { Product } from "./Store";
+import { useAppSelector } from "../context/hook";
 export default function OrderPage({}: {}) {
-  const { items, total } = useSelector(
-    (state: { CartReduser: { items: Product[]; total: number } }) =>
-      state.CartReduser
-  );
+  const { items, total } = useAppSelector((state) => state.cartSlice);
   function generateID(): string {
     const timestamp = new Date().getTime();
     const randomNumber = Math.floor(Math.random() * 10000);

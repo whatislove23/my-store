@@ -1,31 +1,26 @@
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
-import { useSelector } from "react-redux";
-import { Product } from "./Store";
 import { useEffect } from "react";
-import { close, getTotalPrice } from "../context/store";
 
+import { useAppSelector, useAppDispatch } from "../context/hook";
+import { close, getTotalPrice } from "../context/cartSlice";
 export default function Cart(props: {}) {
-  const { items, total, isOpen } = useSelector(
-    (state: {
-      CartReduser: { items: Product[]; total: number; isOpen: boolean };
-    }) => state.CartReduser
-  );
-
+  const { items, total, isOpen } = useAppSelector((state) => state.cartSlice);
+  const dispatch = useAppDispatch();
   if (isOpen) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "scroll";
   }
   useEffect(() => {
-    getTotalPrice();
+    dispatch(getTotalPrice(1));
   }, []);
   return (
     <>
       {isOpen ? (
         <div
           onClick={() => {
-            close();
+            dispatch(close(1));
           }}
           className="backdrop-blur h-screen bg-gray-800 w-screen top-0 right-0 fixed z-30 flex justify-end bg-opacity-60 hover:cursor-pointer"
         >
@@ -35,7 +30,12 @@ export default function Cart(props: {}) {
           >
             <div className=" flex align-center justify-between">
               <div>Your cart</div>
-              <button onClick={close} className="text-3xl">
+              <button
+                onClick={() => {
+                  dispatch(close(1));
+                }}
+                className="text-3xl"
+              >
                 &#215;
               </button>{" "}
             </div>
@@ -53,7 +53,9 @@ export default function Cart(props: {}) {
               <Link
                 to="/order"
                 className="mb-20 mt-2 bg-green-600 text-white p-2 rounded shadow-lg text-center"
-                onClick={close}
+                onClick={() => {
+                  dispatch(close(1));
+                }}
               >
                 Make an order
               </Link>
