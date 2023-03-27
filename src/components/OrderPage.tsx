@@ -1,6 +1,6 @@
 import CartItem from "./CartItem";
 import Select from "react-select";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../context/hook";
 export default function OrderPage({}: {}) {
@@ -10,12 +10,13 @@ export default function OrderPage({}: {}) {
     const randomNumber = Math.floor(Math.random() * 10000);
     return `${timestamp}-${randomNumber}`;
   }
+  const orderID = useRef(generateID());
   function addDays(date: Date, days: number): Date {
     const dateCopy = new Date(date);
     dateCopy.setDate(date.getDate() + days);
     return dateCopy;
   }
-  let orderID = generateID();
+  // let orderID = generateID();
   let orderDate = new Date();
   let deliveryDate = addDays(orderDate, 4);
   const options = [
@@ -61,7 +62,7 @@ export default function OrderPage({}: {}) {
     <div className="mt-20 flex flex-col items-center ">
       <div className="container flex flex-col">
         <div className="text-lg text-gray-700 self-center ">
-          Your order : {orderID}{" "}
+          Your order : {orderID.current}{" "}
         </div>
         <div className="flex justify-around mt-3">
           <div className="text-gray-700  px-2">
