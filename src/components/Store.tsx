@@ -63,7 +63,9 @@ export default function Store(props: {}) {
       </div>
       <div className="container mx-auto my-5 flex flex-wrap justify-center gap-5 max-w-7xl items-start">
         {isLoading || error || data?.length === 0
-          ? [1, 2, 3, 4, 5, 6, 7, 8].map((item) => <FakePost key={item} />)
+          ? [1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+              <FakePost isSingle={false} key={item} />
+            ))
           : filteredData?.map((item) => <Item key={item.id} {...item} />)}
       </div>
     </div>

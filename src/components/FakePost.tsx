@@ -1,6 +1,17 @@
-export default function FakePost(props: {}) {
+export default function FakePost({
+  isSingle,
+}: {
+  isSingle: boolean | undefined;
+}) {
+  let classes =
+    "animate-pulse container mx-2 bg-white shadow-md rounded p-3 pb-4".split(
+      " "
+    );
+  if (!isSingle) classes.push("sm:w-full h-82 md:w-72");
+  else classes.push("w-full");
+
   return (
-    <div className="animate-pulse container mx-2 sm:w-full h-82 md:w-72  bg-white shadow-md rounded p-3 pb-4">
+    <div className={classes.join(" ")}>
       <div className=" rounded bg-gray-200 w-full h-64 flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
