@@ -10,6 +10,8 @@ import { ToastContainer } from "react-toastify";
 import OrderPage from "./components/OrderPage";
 import PageNotFound from "./components/PageNotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import newStore from "./context/newStore";
 function App() {
   return (

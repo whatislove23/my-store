@@ -16,7 +16,7 @@ export default function OrderPage({}: {}) {
     dateCopy.setDate(date.getDate() + days);
     return dateCopy;
   }
-  // let orderID = generateID();
+
   let orderDate = new Date();
   let deliveryDate = addDays(orderDate, 4);
   const options = [
