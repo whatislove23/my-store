@@ -18,7 +18,7 @@ export default function CartItem(all: Product) {
     dispatch(getTotalPrice(1));
   };
   return (
-    <div className="bg-white w-100 rounded shadow flex p-2 flex mt-2 items-center justify-center">
+    <div className="bg-white w-full rounded shadow flex p-2 flex mt-2 items-center justify-center">
       <button
         onClick={() => removeFromCart()}
         className="bg-red-500  rounded-full text-white text-sm p-1 text-xl h-full"
