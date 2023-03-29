@@ -25,7 +25,7 @@ export default function Cart(props: {}) {
           className="backdrop-blur h-screen bg-gray-800 w-screen top-0 right-0 fixed z-30 flex justify-end bg-opacity-60 hover:cursor-pointer"
         >
           <div
-            className="mr-10 bg-gray-50 text-2xl px-2 text-gray-600 hover:cursor-default flex flex-col w-full lg:w-96 sm:w-80"
+            className=" bg-gray-50 text-2xl px-2 text-gray-600 hover:cursor-default flex flex-col w-full lg:w-96 sm:w-80"
             onClick={(e) => e.stopPropagation()}
           >
             <div className=" flex align-center justify-between">
